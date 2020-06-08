@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Python实现图片转化为base64编码格式</title>
+      <link href="/posts/64290.html"/>
+      <url>/posts/64290.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="Python实现图片转码base64"><a href="#Python实现图片转码base64" class="headerlink" title="Python实现图片转码base64"></a>Python实现图片转码base64</h1><hr><pre class="line-numbers language-Python"><code class="language-Python">import base64with open("image.jpg","wb") as file:    image_base64 = base64.b64encode(file.read())    print(image_base64)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pyhton </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Markdown中插入图片</title>
       <link href="/posts/50535.html"/>
       <url>/posts/50535.html</url>
