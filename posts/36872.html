@@ -478,7 +478,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    608
+                    604
                 </div>
                 
 
@@ -500,14 +500,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="七段数码管"><a href="#七段数码管" class="headerlink" title="七段数码管"></a>七段数码管</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
+                <h1 id="七段数码管"><a href="#七段数码管" class="headerlink" title="七段数码管"></a>七段数码管</h1><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><blockquote>
 <ul>
 <li>之前老师讲了用51单片机控制七段数码管的显示，经过几节课的讲解，大概掌握了七段数码管的显示原理，最后老师布置了一个作业，用51单片机控制单片机的显示实现一个秒表。</li>
 <li>下面就以实现秒表的这个实例，总结一下七段数码管显示所涉及到的知识，与大家分享、交流，希望可以帮助到同学们。</li>
 <li><strong>注</strong>：<strong>首先</strong>由于条件有限只能采用Protues+Keil进行仿真，<strong>另外</strong>，能力有限，调试过程可能有一些不足，如果大家有更好的方法，欢迎大家与我分享。</li>
 </ul>
 </blockquote>
-<h2 id="七段数码管的显示原理"><a href="#七段数码管的显示原理" class="headerlink" title="七段数码管的显示原理"></a>七段数码管的显示原理</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>七段数码管是由8数码管组成的，其中七个用来显示，另一个为右下角的DP。共有10接线口，八个为a~h段二极管和DP，还有两个为接电源和接地。如果想显示某个字符，只需要将对应的二极管导通，最后组合起来，即可完成显示。</p>
+<p> 七段数码管的显示原理</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>七段数码管是由8数码管组成的，其中七个用来显示，另一个为右下角的DP。共有10接线口，八个为a~h段二极管和DP，还有两个为接电源和接地。如果想显示某个字符，只需要将对应的二极管导通，最后组合起来，即可完成显示。</p>
 <h3 id="实物图"><a href="#实物图" class="headerlink" title="实物图"></a>实物图</h3><p><img src="/posts/36872/QDSMG-1.jpg" alt></p>
 <h3 id="接线图"><a href="#接线图" class="headerlink" title="接线图"></a>接线图</h3><p><img src="/posts/36872/QDSMG-2.jpg" alt></p>
 <h3 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h3><p>七段数码管分两为共阳极、共阴极两种</p>
@@ -528,12 +529,13 @@
 </blockquote>
 <p><img src="/posts/36872/QDSMG-3.png" alt></p>
 <p>如果我们想显示数字9，共阳极低电平有效。P2口对应8位二进制数00010000</p>
-<pre class="line-numbers language-C"><code class="language-C">#include<reg52.h>
+<pre class="line-numbers language-C"><code class="language-C"># include  <reg52.h>
 
 void main()
 {
     P2 = 0x10; // 给P2口传递二进制数00010000，相当于16进制0x10。
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>效果图</strong></p>
 <p><img src="/posts/36872/QDSMG-4.png" alt></p>
 <p>同理，我们可以做一个数组，放入显示0-9所对应的16进制数。</p>
@@ -546,7 +548,7 @@ void main()
 </blockquote>
 <p><img src="/posts/36872/QDSMG-7.gif" alt></p>
 <p><strong>代码</strong></p>
-<pre class="line-numbers language-C"><code class="language-C">#include<reg52.h>
+<pre class="line-numbers language-C"><code class="language-C"># include < reg52.h >
 table[] = {0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x10};       // 这是0~9对应的16进制数
 int n,i,j,k;
 
@@ -569,7 +571,6 @@ void main()              // 主函数
         delay();
     }
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong><em>秒表制作待续</em></strong></p>
 
             </div>
             <hr/>
@@ -1042,30 +1043,29 @@ void main()              // 主函数
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/36872.html">
+                <a href="/posts/29895.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="单片机实验:七段数码管的显示">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="单片机实验：数码管实现秒表">
                         
-                        <span class="card-title">单片机实验:七段数码管的显示</span>
+                        <span class="card-title">单片机实验：数码管实现秒表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            七段数码管实现秒表计数
+                            单片机控制数码管显示实现秒表
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-09
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1078,7 +1078,6 @@ void main()              // 主函数
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1283,7 +1282,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.4k</span>&nbsp;字
+                class="white-color">4.5k</span>&nbsp;字
             
             
             
