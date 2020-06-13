@@ -471,21 +471,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-10
+                    2020-06-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    789
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -502,7 +502,7 @@
             <div id="articleContent">
                 <h2 id="MCS-51中断系统"><a href="#MCS-51中断系统" class="headerlink" title="MCS-51中断系统"></a>MCS-51中断系统</h2><h3 id="什么是中断"><a href="#什么是中断" class="headerlink" title="什么是中断"></a>什么是中断</h3><blockquote>
 <ul>
-<li><strong>中断</strong>就是计算机在执行某一程序的过程中，由计算机系统内部或外部的某种原因而<strong>必须终止当前程序的运行</strong>，先去执行相应的处理程序，然后再返回继续执行原程序。</li>
+<li><strong>中断</strong>就是计算机在执行某一程序的过程中，由计算机系统内部或外部的某种原因而<strong>必须终止当前程序的运行</strong>，<strong>先去执行相应的处理程序</strong>，然后再<strong>返回继续执行原程序</strong>。</li>
 </ul>
 </blockquote>
 <h3 id="什么是中断系统"><a href="#什么是中断系统" class="headerlink" title="什么是中断系统"></a>什么是中断系统</h3><blockquote>
@@ -570,7 +570,66 @@
 <li>MCS-51中断系统在4个特殊功能寄存器控制下工作，分别为定时/计数器控制寄存器(<code>TCON</code>)、串行口控制寄存器(<code>SCON</code>)、中断允许控制寄存器(<code>IE</code>)、中断优先级控制寄存器(<code>IP</code>)。下面一一解释。</li>
 </ul>
 </blockquote>
-<h4 id="中断请求控制"><a href="#中断请求控制" class="headerlink" title="中断请求控制"></a>中断请求控制</h4><h5 id="定时-计数器控制寄存器-TCON"><a href="#定时-计数器控制寄存器-TCON" class="headerlink" title="定时/计数器控制寄存器 TCON"></a>定时/计数器控制寄存器 <code>TCON</code></h5><h5 id="串行口控制寄存器-SCON"><a href="#串行口控制寄存器-SCON" class="headerlink" title="串行口控制寄存器 SCON"></a>串行口控制寄存器 <code>SCON</code></h5><h4 id="中断允许控制"><a href="#中断允许控制" class="headerlink" title="中断允许控制"></a>中断允许控制</h4><h5 id="中断允许控制寄存器-IE"><a href="#中断允许控制寄存器-IE" class="headerlink" title="中断允许控制寄存器 IE"></a>中断允许控制寄存器 <code>IE</code></h5><h4 id="中断优先级控制"><a href="#中断优先级控制" class="headerlink" title="中断优先级控制"></a>中断优先级控制</h4><h5 id="中断优先级控制寄存器-IP"><a href="#中断优先级控制寄存器-IP" class="headerlink" title="中断优先级控制寄存器 IP"></a>中断优先级控制寄存器 <code>IP</code></h5><h3 id="中断系统在实际编程中的应用"><a href="#中断系统在实际编程中的应用" class="headerlink" title="中断系统在实际编程中的应用"></a>中断系统在实际编程中的应用</h3><h4 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h4><h4 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h4><h4 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h4><h2 id="定时-计数器"><a href="#定时-计数器" class="headerlink" title="定时/计数器"></a>定时/计数器</h2>
+<h4 id="中断请求控制"><a href="#中断请求控制" class="headerlink" title="中断请求控制"></a>中断请求控制</h4><h5 id="定时-计数器控制寄存器-TCON"><a href="#定时-计数器控制寄存器-TCON" class="headerlink" title="定时/计数器控制寄存器 TCON"></a>定时/计数器控制寄存器 <code>TCON</code></h5><p><strong>作用</strong></p>
+<blockquote>
+<ul>
+<li><ol>
+<li>控制定时/计数器<code>T0</code>和<code>T1</code>的溢出中断</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>控制外部中断的触发方式.由<code>IT0</code>和<code>IT1</code>控制</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>锁存外部中断请求标志位</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<p><img src="/posts/19124/ZD-3.jpg" alt></p>
+<table>
+<thead>
+<tr>
+<th>位地址</th>
+<th>位定义</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>88H</td>
+<td>IT0</td>
+<td>选择外部中断0的中断触发方式。由软件控制。<code>IT0=0为电平触发方式</code>。<code>IT0=1为下降沿触发方式</code></td>
+</tr>
+<tr>
+<td>89H</td>
+<td>IE0</td>
+<td>选择外部中断1的中断触发方式。功能与<code>IT0</code>相似</td>
+</tr>
+<tr>
+<td>8AH</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="串行口控制寄存器-SCON"><a href="#串行口控制寄存器-SCON" class="headerlink" title="串行口控制寄存器 SCON"></a>串行口控制寄存器 <code>SCON</code></h5><p><strong>串行口的接收发送数据中断请求标志位</strong>(<code>RI</code>和<code>TI</code>)</p>
+<table>
+<thead>
+<tr>
+<th>位定义</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TI</code></td>
+<td>串行口发送中断请求标志位。CPU每发送一帧数据，硬件置位1(<code>TI=1</code>)，但是中断被响应时，需要在中断服务程序中通过软件对<code>TI</code>清零</td>
+</tr>
+<tr>
+<td><code>RI</code></td>
+<td>串行口接受中断请求标志位。每接收一帧数据，硬件置位1(<code>TI=1</code>)，但是中断被响应时，一样需要在中断服务程序中通过软件对<code>TI</code>清零</td>
+</tr>
+</tbody></table>
+<h4 id="中断允许控制"><a href="#中断允许控制" class="headerlink" title="中断允许控制"></a>中断允许控制</h4><h5 id="中断允许控制寄存器-IE"><a href="#中断允许控制寄存器-IE" class="headerlink" title="中断允许控制寄存器 IE"></a>中断允许控制寄存器 <code>IE</code></h5><h4 id="中断优先级控制"><a href="#中断优先级控制" class="headerlink" title="中断优先级控制"></a>中断优先级控制</h4><h5 id="中断优先级控制寄存器-IP"><a href="#中断优先级控制寄存器-IP" class="headerlink" title="中断优先级控制寄存器 IP"></a>中断优先级控制寄存器 <code>IP</code></h5><h3 id="中断系统在实际编程中的应用"><a href="#中断系统在实际编程中的应用" class="headerlink" title="中断系统在实际编程中的应用"></a>中断系统在实际编程中的应用</h3><h4 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h4><h4 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h4><h4 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h4><h2 id="定时-计数器"><a href="#定时-计数器" class="headerlink" title="定时/计数器"></a>定时/计数器</h2>
             </div>
             <hr/>
 
@@ -1042,48 +1101,46 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/19124.html">
+                <a href="/posts/34584.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="MCS-51中断、定时/计数器">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="如何给Hexo博客绑定个人域名">
                         
-                        <span class="card-title">MCS-51中断、定时/计数器</span>
+                        <span class="card-title">如何给Hexo博客绑定个人域名</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            笔记
+                            绑定个性域名
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-13
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/" class="post-category">
-                                    单片机
+                            <a href="/categories/%E5%8D%9A%E5%AE%A2/" class="post-category">
+                                    博客
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                        <span class="chip bg-color">单片机</span>
+                    <a href="/tags/%E6%B5%85%E8%B0%88%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+                        <span class="chip bg-color">浅谈个人博客</span>
                     </a>
                     
                 </div>
@@ -1283,7 +1340,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.5k</span>&nbsp;字
+                class="white-color">4.7k</span>&nbsp;字
             
             
             
