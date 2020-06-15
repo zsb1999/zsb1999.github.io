@@ -5,12 +5,24 @@
     
     <entry>
       <title>如何给Hexo博客绑定个人域名</title>
-      <link href="/posts/34585.html"/>
-      <url>/posts/34585.html</url>
+      <link href="/posts/34584.html"/>
+      <url>/posts/34584.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当我们搭建好了自己的Hexo博客，可供访问的域名就是<code>username.github.io</code>，顾名思义<code>username</code>就是你的<code>GitHub</code>的用户名。废话不多说了，上才艺。</p><p>绑定域名之前需要自行购买域名，推荐<a href="https://www.aliyun.com" target="_blank" rel="noopener">阿里云</a>、<a href="https://cloud.tencent.com" target="_blank" rel="noopener">腾讯云</a>。当然也有其他许多国内外知名域名提供商可供购买，这里以腾讯云为例。</p><h2 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h2><blockquote><ul><li>首先访问腾讯云官网</li></ul></blockquote><p><strong>点击域名特惠</strong></p><p><img src="/posts/34584/1.png" alt></p><p><strong>选择域名格式</strong></p><ul><li>腾讯云提供10+种域名，不同格式的域名收费不同，根据个人喜好和需求甄选格式。</li></ul><p><img src="/posts/34584/2.png" alt></p><p><strong>点击立即购买</strong></p><ul><li>点完购买会弹出登录窗口，根据提示，注册帐号。</li></ul><p><strong>提示</strong>：注册后，找到账号信息，进行账号的实名认证</p><p><img src="/posts/34584/3.png" alt></p><p><strong>查询域名</strong></p><ul><li>输入心仪的域名，查看是否已被注册。如果没有被注册点击一键购买</li></ul><p><img src="/posts/34584/4.png" alt></p><p><strong>支付</strong></p><p><img src="/posts/34584/6.png" alt></p><p><strong>这样就购买了一个专属域名</strong></p><h2 id="实名认证"><a href="#实名认证" class="headerlink" title="实名认证"></a>实名认证</h2><p><strong>点击域名管理</strong></p><blockquote><ul><li>在云产品的下拉选项卡中找到<strong>域名管理</strong>，</li></ul></blockquote><p><img src="/posts/34584/8.png" alt></p><blockquote><ul><li>下面可以看到这里的服务状态是<strong>正常</strong>，因为这个是我自己的，已经实名认证了。如果没有实名认证，这个位置会显示<strong>未实名</strong>。点击未实名，根据步骤完成域名的实名认证。<br><img src="/posts/34584/9.png" alt></li></ul></blockquote><p><strong>这样就完成了域名的实名认证</strong></p><p><strong>可能需要等一段时间</strong></p><h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><blockquote><ul><li>实名认证通过后，找到<strong>域名管理</strong>或者<strong>DNS解析 DNSPod</strong>，进入找到如下界面</li></ul></blockquote><p><img src="/posts/34584/10.png" alt></p><p><strong>点击解析</strong></p><blockquote><ul><li>跳转到如下界面</li></ul></blockquote><p><img src="/posts/34584/11.png" alt></p><p><strong>点击快速添加网站/邮箱解析</strong></p><blockquote><ul><li>跳转的如下界面</li></ul></blockquote><p><img src="/posts/34584/12.png" alt></p><p><strong>点击立即设置</strong></p><p><img src="/posts/34584/13.png" alt></p><p>这里需要输入的<code>IP</code>就是我们<code>Hexo</code>博客所对应的<code>IP</code>，下一步我们获取IP地址</p><h2 id="获取IP"><a href="#获取IP" class="headerlink" title="获取IP"></a>获取<code>IP</code></h2><blockquote><ul><li><code>Win+R</code>输入<code>cmd</code>敲回车，输入指令<code>ping username.github.io</code>敲回车。</li></ul></blockquote><p><img src="/posts/34584/14.png" alt></p><p>这样就获取到IP地址了输入到上一步的空格中，点击确定即可。</p><h2 id="绑定GitHub"><a href="#绑定GitHub" class="headerlink" title="绑定GitHub"></a>绑定<code>GitHub</code></h2><p>访问自己的<code>GitHub</code>帐号的<code>repositories</code>主页，点击<code>Hexo</code>博客所部署的仓库。</p><p><img src="/posts/34584/15.png" alt></p><p><strong>点击<code>Settings</code></strong></p><p><img src="/posts/34584/16.png" alt></p><p><strong>找到<code>Custom domain</code></strong></p><p>在空白框中填写购买的域名</p><p><img src="/posts/34584/17.png" alt></p><h2 id="创建CNAME"><a href="#创建CNAME" class="headerlink" title="创建CNAME"></a>创建<code>CNAME</code></h2><p>我们在博客根目录下的<code>source</code>目录下创建一个名为<code>CNAME</code>的文件，并且把域名填入。我的是<code>H:\Blog\source</code></p><p><strong>提示</strong>：可以像我一样，首先创建一个<code>CNAME.txt</code>，把域名输入<code>txt</code>文件，然后重命名把<code>.txt</code>删除即可。</p><p><img src="/posts/34584/18.png" alt></p><h2 id="访问自己的域名试试看"><a href="#访问自己的域名试试看" class="headerlink" title="访问自己的域名试试看"></a>访问自己的域名试试看</h2><p><img src="/posts/34584/19.png" alt></p><p><strong>大功告成</strong></p>]]></content>
       
       
+      <categories>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 浅谈个人博客 </tag>
+            
+        </tags>
       
     </entry>
     
