@@ -478,14 +478,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    8 分
                 </div>
                 
 
@@ -796,7 +796,238 @@ EA = 1;  // 总中断控制器打开
 </tr>
 </tbody></table>
 <h6 id="同级内第二优先级的次序"><a href="#同级内第二优先级的次序" class="headerlink" title="同级内第二优先级的次序"></a>同级内第二优先级的次序</h6><p><strong>外部中断0</strong> &gt; <strong>T0溢出中断</strong> &gt; <strong>外部中断1</strong> &gt; <strong>T1溢出中断</strong> &gt; <strong>串行口中断</strong></p>
-<h3 id="中断系统在实际编程中的应用"><a href="#中断系统在实际编程中的应用" class="headerlink" title="中断系统在实际编程中的应用"></a>中断系统在实际编程中的应用</h3><h4 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h4><h4 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h4><h4 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h4><h2 id="定时-计数器"><a href="#定时-计数器" class="headerlink" title="定时/计数器"></a>定时/计数器</h2>
+<h3 id="中断系统在实际编程中的应用"><a href="#中断系统在实际编程中的应用" class="headerlink" title="中断系统在实际编程中的应用"></a>中断系统在实际编程中的应用</h3><h4 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h4><p><strong>中断的初始化</strong></p>
+<pre class="line-numbers language-C"><code class="language-C">#include <reg51.h>
+
+void init() // 中断的初始化函数
+{
+    EA = 1; // 总中断控制位
+    ES = 1; // 串行口中断允许
+    EX0 = 1; // 外部中断0允许
+    EX1 = 1; // 外部中断1允许
+    ET0 = 1; // 定时/计数器0中断允许
+    ET1 = 1; // 定时/计数器1中断允许
+    IT0 = 1; // 选择外部中断0的触发方式
+    IT1 = 1; // 选择外部中断1的触发方式
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果有二种或以上的中断，那就需要在初始化函数中通过IP优先级控制寄存器规定各个中断的优先级</p>
+<p><strong>例1</strong>：假设允许外部中断0和1中断，并设定外部中断0为高级中断，外部中断1为低级中断，外部中断0为下降沿触发方式，外部中断1为电平触发方式。试写出该程序的中断初始化程序。</p>
+<pre class="line-numbers language-C"><code class="language-C">#include <reg51.h>
+
+void init() // 
+{
+    EA = 1; 打开中断控制
+    EX0 = 1; 允许外部中断0
+    EX1 = 1; 允许外部中断1
+    IT0 = 1; 外部中断1采取边沿触发方式
+    IT1 = 0; 外部中断0采取电平触发方式
+    PX0 = 1; 外部中断0为高优先级
+    PX1 = 0; 外部中断1为低优先级
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h4><p>废话不多说，实战析问题</p>
+<p><strong>例2</strong>：用80C51单片机控制8个LED灯，在外部中断0输入引脚(P3.2)接一个开关K1。要求将外部中断0设置为下降沿触发，程序启动是8个LED以跑马灯的形式交替闪烁。每按一次开关K1，使引脚接地，产生一个下降沿触发的外部中断请求。在中断服务程序中，8个LED高四位和低四位交替闪烁5次，然后中断返回，8个LED继续以跑马灯形式闪烁。</p>
+<blockquote>
+<ul>
+<li><strong>采用<code>Protues</code>+<code>Keil</code>仿真</strong> </li>
+</ul>
+</blockquote>
+<p><strong>元器件</strong></p>
+<blockquote>
+<ul>
+<li>单片机：<code>80C51</code> *1</li>
+<li>开关按钮：<code>Button</code> *1</li>
+<li>电阻：<code>MINRES470K</code> *1</li>
+<li>LED：<code>LED-BLUE</code> *8</li>
+</ul>
+</blockquote>
+<p><strong>仿真图</strong></p>
+<p><img src="/posts/19124/0.png" alt></p>
+<p><strong>代码</strong></p>
+<pre class="line-numbers language-C"><code class="language-C">#include<reg52.h>
+
+unsigned char code table[] = {0xfe,0xfd,0xfb,0xf7,0xef,0xdf,0xbf,0x7f,0x00,0xff};    // 控制P2端口的状态
+
+unsigned char i,j,k,num;
+
+void delay()             // 延时函数
+{
+    for(i = 0;i<100;i++)
+    {
+        for(j=0;j<200;j++)
+        ;
+    }
+}
+
+void init()           // 中断的初始化
+{
+    EA = 1;       // 打开总中断控制
+    EX0 = 1;   // 允许外部中断0
+    IT0 = 1;   // 外部中断为下降沿触发方式
+}
+
+
+void main()       
+{
+    init();
+    while(1)
+    {
+        for(num =0;num<10;num++)
+        {
+            P2 = table[num];
+            delay();
+        }
+    }
+}
+
+void int0() interrupt 0               // 中断服务程序
+{
+    for(k = 0;k<5;k++){
+        P2 = 0xf0;
+        delay();
+        P2=0x0f;
+        delay();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h4><p><strong>例3</strong>：在<strong>例2</strong>的基础上，在外部中断1输入引脚(P3.3)接一只按钮开关K2。当按下K1时，外部中断0下降沿触发方式触发，进入外部中断0服务程序，上下4个灯交替闪烁；此时按下K2，外部中断1下降沿触发方式触发，进入外部中断1服务程序，8个灯交替闪烁。当外部中断1响应完毕后，返回继续响应外部中断0，直到外部中断0响应完毕，返回执行主程序。</p>
+<p><strong>首先我们分析一波中断初始化函数</strong></p>
+<blockquote>
+<ul>
+<li>两个外部中断0和1。外部中断0的服务程序为上下4灯交替闪烁，外部中断1的服务程序为8灯闪烁。即<code>EA = 1; EX0 = 1; EX1 = 1;</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>优先级：外部中断1 &gt; 外部中断0  即<code>PX1 = 1; PX0 = 0;</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>触发方式：都为下降沿触发。即<code>IT0 = 1; IT1 = 1;</code></li>
+</ul>
+</blockquote>
+<p>这样我们的中断初始化程序基本完成</p>
+<pre class="line-numbers language-C"><code class="language-C">void init()
+{
+    EA = 1;
+    EX0 = 1; EX1 = 1;
+    PX0 = 0; PX1 = 1;
+    IT0 = 1; IT1 = 1;
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>其次我们再捯饬一下主程序</strong></p>
+<blockquote>
+<ul>
+<li>我们知道由<strong>例2</strong>知道，程序启动8个LED为流水形式闪烁。</li>
+</ul>
+</blockquote>
+<pre class="line-numbers language-C"><code class="language-C">
+void main()       
+{
+    init();
+    while(1)
+    {
+        for(num =0;num<10;num++)
+        {
+            P2 = table[num];
+            delay();
+        }
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>另外我们再搞一下外部中断0的服务程序</strong></p>
+<pre class="line-numbers language-C"><code class="language-C">void int0() interrupt 0
+{
+    for(k = 0;k<5;k++)
+    {
+        P2 = 0xf0;
+        delay();
+        P2=0x0f;
+        delay();
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>最后我们再敲他喵的弄一下外部中断1的服务程序</strong></p>
+<pre class="line-numbers language-C"><code class="language-C">
+void int1() interrupt 2              // 外部中断1服务程序
+{
+    for(l = 0;l < 5; l++)
+    {
+        P2 = 0x00;
+        delay();
+        P2 = 0xff;
+        delay();
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>大功告成</strong></p>
+<pre class="line-numbers language-C"><code class="language-C">
+#include<reg52.h>
+
+unsigned char code table[] = {0xfe, 0xfd, 0xfb, 0xf7, 0xef, 0xdf, 0xbf, 0x7f, 0x00, 0xff};    // 控制P2端口的状态
+
+unsigned char i, j, k, l, num;
+
+void delay()             // 延时函数
+{
+    for(i = 0; i < 200; i++)
+    {
+        for(j = 0; j < 200; j++)
+        ;
+    }
+}
+
+void init()           // 中断的初始化
+{
+    EA = 1;
+    EX0 = 1; EX1 = 1;
+    PX0 = 0; PX1 = 1;
+    IT0 = 1; IT1 = 1;
+}
+
+void main()       
+{
+    init();
+    while(1)
+    {
+        for(num = 0; num < 10; num++)
+        {
+            P2 = table[num];
+            delay();
+        }
+    }
+}
+
+void int0() interrupt 0               // 外部中断0中断服务程序
+{
+    EX0 = 0;
+    for(k = 0; k < 5; k++)
+    {
+        P2 = 0xf0;
+        delay();
+        P2 = 0x0f;
+        delay();
+        EX0 = 1;
+    }
+}
+
+void int1() interrupt 2              // 外部中断1服务程序
+{
+    for(l = 0;l < 5; l++)
+    {
+        P2 = 0x00;
+        delay();
+        P2 = 0xff;
+        delay();
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>奉上Protues仿真图</strong></p>
+<p><img src="/posts/19124/2.png" alt></p>
+<h3 id="中断部分总结"><a href="#中断部分总结" class="headerlink" title="中断部分总结"></a>中断部分总结</h3><p>待续…</p>
+<h2 id="定时-计数器"><a href="#定时-计数器" class="headerlink" title="定时/计数器"></a>定时/计数器</h2>
             </div>
             <hr/>
 
@@ -1507,7 +1738,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">6.1k</span>&nbsp;字
+                class="white-color">6.7k</span>&nbsp;字
             
             
             
