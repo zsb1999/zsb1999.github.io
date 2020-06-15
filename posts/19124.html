@@ -471,21 +471,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-12
+                    2020-06-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    6 分
                 </div>
                 
 
@@ -629,7 +629,174 @@
 <td>串行口接受中断请求标志位。每接收一帧数据，硬件置位1(<code>TI=1</code>)，但是中断被响应时，一样需要在中断服务程序中通过软件对<code>TI</code>清零</td>
 </tr>
 </tbody></table>
-<h4 id="中断允许控制"><a href="#中断允许控制" class="headerlink" title="中断允许控制"></a>中断允许控制</h4><h5 id="中断允许控制寄存器-IE"><a href="#中断允许控制寄存器-IE" class="headerlink" title="中断允许控制寄存器 IE"></a>中断允许控制寄存器 <code>IE</code></h5><h4 id="中断优先级控制"><a href="#中断优先级控制" class="headerlink" title="中断优先级控制"></a>中断优先级控制</h4><h5 id="中断优先级控制寄存器-IP"><a href="#中断优先级控制寄存器-IP" class="headerlink" title="中断优先级控制寄存器 IP"></a>中断优先级控制寄存器 <code>IP</code></h5><h3 id="中断系统在实际编程中的应用"><a href="#中断系统在实际编程中的应用" class="headerlink" title="中断系统在实际编程中的应用"></a>中断系统在实际编程中的应用</h3><h4 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h4><h4 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h4><h4 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h4><h2 id="定时-计数器"><a href="#定时-计数器" class="headerlink" title="定时/计数器"></a>定时/计数器</h2>
+<blockquote>
+<ul>
+<li>串行口中断不能由硬件自动清除中断请求标志位，需要用户通过软件进行控制清零。</li>
+</ul>
+</blockquote>
+<h4 id="中断允许控制"><a href="#中断允许控制" class="headerlink" title="中断允许控制"></a>中断允许控制</h4><h5 id="中断允许控制寄存器-IE"><a href="#中断允许控制寄存器-IE" class="headerlink" title="中断允许控制寄存器 IE"></a>中断允许控制寄存器 <code>IE</code></h5><p><code>IE</code>是控制中断的开关，通过对<code>IE</code>的清0和置1操作来控制中断的屏蔽和开放。</p>
+<p>中断允许控制寄存器<code>IE</code>对中断的开放与屏蔽实现两级控制，存在一个总的中断控制位<code>EA</code></p>
+<h6 id="IE各位定义"><a href="#IE各位定义" class="headerlink" title="IE各位定义"></a><code>IE</code>各位定义</h6><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>位地址</td>
+<td>AFH</td>
+<td>AEH</td>
+<td>ADH</td>
+<td>ACH</td>
+<td>ABH</td>
+<td>AAH</td>
+<td>A9H</td>
+<td>A8H</td>
+</tr>
+<tr>
+<td>位定义</td>
+<td>EA</td>
+<td></td>
+<td></td>
+<td>ES</td>
+<td>ET1</td>
+<td>EX1</td>
+<td>ET0</td>
+<td>EX0</td>
+</tr>
+</tbody></table>
+<h6 id="IE各位定义的功能"><a href="#IE各位定义的功能" class="headerlink" title="IE各位定义的功能"></a><code>IE</code>各位定义的功能</h6><table>
+<thead>
+<tr>
+<th>位定义</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>EA</code></td>
+<td>总中断允许控制位。当<code>EA=0</code>时，不允许任何中断请求。</td>
+</tr>
+<tr>
+<td><code>ES</code></td>
+<td>串行口中断控制位。当<code>ES=0</code>时，不允许串行口中断；当<code>EA=1</code>且<code>ES=1</code>时，允许串行口中断。</td>
+</tr>
+<tr>
+<td><code>ET1</code></td>
+<td>定时/计数器1中断允许控制位。当<code>ET1=0</code>时，屏蔽<code>T1</code>的溢出中断；当EA=1且<code>ET1=1</code>时，允许T1溢出中断</td>
+</tr>
+<tr>
+<td><code>ET0</code></td>
+<td>定时/计数器0中断允许控制位。功能与<code>ET1</code>相同。</td>
+</tr>
+<tr>
+<td><code>EX1</code></td>
+<td>外部中断1的中断允许控制位。当<code>EX1=0</code>时，屏蔽外部中断1的中断请求；当<code>EA=1</code>且<code>EX1=1</code>时，允许外部中断1的中断请求</td>
+</tr>
+<tr>
+<td><code>EX0</code></td>
+<td>外部中断0的中断允许控制位。功能与<code>EX1</code>相同</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li>若某个中断源被允许，出来<code>IE</code>对应位置1外，还需要总中断控制位<code>EA</code>置1</li>
+</ul>
+</blockquote>
+<h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><p>若允许片内两个定时/计数器中断，禁止其他中断源的中断请求，是编写出设置IE的响应指令</p>
+<p><strong>位操作指令</strong></p>
+<pre><code>
+CLR  EX0  ; 禁止外部中断0
+CLR  EX1  ; 禁止外部中断1
+CLR  ES   ; 禁止串行口中断
+SETB ET0  ; 允许定时/计数器0中断
+SETB ET1  ; 允许定时/计数器1中断
+SETB EA   ; 总中断控制器打开
+</code></pre><p><strong>C语言</strong></p>
+<pre class="line-numbers language-C"><code class="language-C">
+#include <reg51.h>
+
+EX0 = 0; // 禁止外部中断0
+EX1 = 0; // 禁止外部中断1
+ES = 0;  // 禁止串行口中断
+ET0 = 1; // 允许定时/计数器0中断
+ET1 = 1; // 允许定时/计数器1中断
+EA = 1;  // 总中断控制器打开
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="中断优先级控制"><a href="#中断优先级控制" class="headerlink" title="中断优先级控制"></a>中断优先级控制</h4><h5 id="中断优先级控制寄存器-IP"><a href="#中断优先级控制寄存器-IP" class="headerlink" title="中断优先级控制寄存器 IP"></a>中断优先级控制寄存器 <code>IP</code></h5><h6 id="IP各位定义"><a href="#IP各位定义" class="headerlink" title="IP各位定义"></a><code>IP</code>各位定义</h6><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>位地址</td>
+<td></td>
+<td></td>
+<td></td>
+<td>BC</td>
+<td>BB</td>
+<td>BA</td>
+<td>B9</td>
+<td>B8</td>
+</tr>
+<tr>
+<td>位定义</td>
+<td></td>
+<td></td>
+<td></td>
+<td>PS</td>
+<td>PT1</td>
+<td>PX1</td>
+<td>PT0</td>
+<td>PX0</td>
+</tr>
+</tbody></table>
+<h6 id="IP各位定义的功能"><a href="#IP各位定义的功能" class="headerlink" title="IP各位定义的功能"></a><code>IP</code>各位定义的功能</h6><table>
+<thead>
+<tr>
+<th>位定义</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PS</code></td>
+<td>串行口中断优先级控制位。PS=1，串行口中断为高优先级；PS=0，为低优先级。</td>
+</tr>
+<tr>
+<td><code>PT1</code></td>
+<td>定时/计数器1中断优先级控制位。当<code>PT1=0</code>时，T1溢出中断为低优先级；当<code>PT1=1</code>时，T1溢出中断为高优先级。</td>
+</tr>
+<tr>
+<td><code>PT0</code></td>
+<td>定时/计数器0中断优先级控制位。当<code>PT0=0</code>时，T0溢出中断为低优先级；当<code>PT0=1</code>时，T0溢出中断为高优先级。</td>
+</tr>
+<tr>
+<td><code>PX1</code></td>
+<td>外部中断1的中断优先级控制位。当<code>PX1=0</code>时，外部中断1为低优先级；当<code>PX1=1</code>时，外部中断1为高优先级。</td>
+</tr>
+<tr>
+<td><code>PX0</code></td>
+<td>外部中断0的中断优先级控制位。当<code>PX0=0</code>时，外部中断0为低优先级；当<code>PX0=1</code>时，外部中断0为高优先级。</td>
+</tr>
+</tbody></table>
+<h6 id="同级内第二优先级的次序"><a href="#同级内第二优先级的次序" class="headerlink" title="同级内第二优先级的次序"></a>同级内第二优先级的次序</h6><p><strong>外部中断0</strong> &gt; <strong>T0溢出中断</strong> &gt; <strong>外部中断1</strong> &gt; <strong>T1溢出中断</strong> &gt; <strong>串行口中断</strong></p>
+<h3 id="中断系统在实际编程中的应用"><a href="#中断系统在实际编程中的应用" class="headerlink" title="中断系统在实际编程中的应用"></a>中断系统在实际编程中的应用</h3><h4 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h4><h4 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h4><h4 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h4><h2 id="定时-计数器"><a href="#定时-计数器" class="headerlink" title="定时/计数器"></a>定时/计数器</h2>
             </div>
             <hr/>
 
@@ -1105,7 +1272,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/34584.html">
+                <a href="/posts/34585.html">
                     <div class="card-image">
                         
                         
@@ -1117,7 +1284,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            绑定个性域名
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -1126,23 +1293,11 @@
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%8D%9A%E5%AE%A2/" class="post-category">
-                                    博客
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            小鼠标
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%B5%85%E8%B0%88%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
-                        <span class="chip bg-color">浅谈个人博客</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1340,7 +1495,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.1k</span>&nbsp;字
+                class="white-color">5.5k</span>&nbsp;字
             
             
             
