@@ -482,7 +482,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
@@ -605,6 +605,8 @@
 <ul>
 <li>闪烁周期为100ms，亮50ms，灭50ms</li>
 </ul>
+<p><code>TMOD = 0x01</code> 即0000 0001B，在TMOD寄存器中低四位控制T0的工作方式；GATE = 0 只需要TR0 = 1，T0就可以启动；C/T = 0 为定时器功能；M0M1=01，为工作方式1</p>
+<p><strong>定时计数器初值的计算</strong></p>
 <p><code>Proteus</code>仿真图<br><img src="/posts/14549/0.png" alt></p>
 <p><strong>源代码</strong></p>
 <pre class="line-numbers language-C"><code class="language-C"># include <reg51.h>
@@ -1352,7 +1354,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.9k</span>&nbsp;字
+                class="white-color">8k</span>&nbsp;字
             
             
             
