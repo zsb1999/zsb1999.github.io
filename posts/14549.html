@@ -482,7 +482,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -600,7 +600,38 @@
 <h4 id="方式2"><a href="#方式2" class="headerlink" title="方式2"></a>方式2</h4><p>T0、T1工作模式完全相同，以T0为例。<br>当M1M0 = 10时，定时/计数器选定方式2进行工作。16位加1计数器被分为两个8位寄存器TL0和TH0，其中TL0为加1计数器，TH0作为TL0的初值预置寄存器，且TH0数值始终为初值常数。</p>
 <p>当TL0计数溢出时，系统将溢出标志位(TF0)置位，申请中断，同时TH0中的初值重新装入TL0。</p>
 <h4 id="方式3"><a href="#方式3" class="headerlink" title="方式3"></a>方式3</h4><p>工作方式3适用于单片机需要1个独立的定时/计数器、1个定时器的情况。</p>
-<h2 id="定时-计数器应用实例"><a href="#定时-计数器应用实例" class="headerlink" title="定时/计数器应用实例"></a>定时/计数器应用实例</h2>
+<h2 id="定时-计数器应用实例"><a href="#定时-计数器应用实例" class="headerlink" title="定时/计数器应用实例"></a>定时/计数器应用实例</h2><p><strong>实例</strong>：用定时器T0查询方式控制P2口8位LED闪烁</p>
+<p>要求：</p>
+<ul>
+<li>闪烁周期为100ms，亮50ms，灭50ms</li>
+</ul>
+<p><code>Proteus</code>仿真图<br><img src="/posts/14549/0.png" alt></p>
+<p><strong>源代码</strong></p>
+<pre class="line-numbers language-C"><code class="language-C"># include <reg51.h>
+
+void T0init()
+{
+    TMOD = 0x01;                   // TMOD = 0000 0001B 只能字节操作 工作方式1
+    TH0 = (65536 - 46083) / 256;   // TH0赋初值
+    TL0 = (65536 - 46083) % 256;   // TL0赋初值
+    TR0 = 1;                        // 定时器T0打开
+    P2 = 0xff;                       // 熄灭8个LED灯
+}
+void main()
+{
+    T0init();
+    while(1)
+    {
+        while(TF0 == 0)   // 定时器T0溢出标志位，当TF=1是产生中断请求。
+            ;
+         TF0 = 0;          // TF0置1后需要手动恢复。
+         P2 = ~P2;         // P2口取反
+        TH0 = (65536 - 46083) / 256;   // TH0重新赋值
+        TL0 = (65536 - 46083) % 256;
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr/>
 
@@ -1321,7 +1352,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.8k</span>&nbsp;字
+                class="white-color">7.9k</span>&nbsp;字
             
             
             
