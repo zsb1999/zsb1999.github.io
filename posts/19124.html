@@ -471,7 +471,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-17
+                    2020-06-26
                 </div>
                 
 
@@ -1125,7 +1125,7 @@ void int1() interrupt 2              // 外部中断1服务程序
 </ul>
 <h4 id="方式2"><a href="#方式2" class="headerlink" title="方式2"></a>方式2</h4><p>T0、T1工作模式完全相同，以T0为例。<br>当M1M0 = 10时，定时/计数器选定方式2进行工作。16位加1计数器被分为两个8位寄存器TL0和TH0，其中TL0为加1计数器，TH0作为TL0的初值预置寄存器，且TH0数值始终为初值常数。</p>
 <p>当TL0计数溢出时，系统将溢出标志位(TF0)置位，申请中断，同时TH0中的初值重新装入TL0。</p>
-<h4 id="方式3"><a href="#方式3" class="headerlink" title="方式3"></a>方式3</h4><p>当M1M0=11时，定时/计数器T0在方式3下工作</p>
+<h4 id="方式3"><a href="#方式3" class="headerlink" title="方式3"></a>方式3</h4><p>工作方式3适用于单片机需要1个独立的定时/计数器、1个定时器的情况。</p>
 
             </div>
             <hr/>
