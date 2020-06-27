@@ -473,7 +473,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    180
+                    271
                 </div>
                 
 
@@ -497,10 +497,56 @@
             <div id="articleContent">
                 <h1 id="intrins-h中的-crol-和-cror-的使用"><a href="#intrins-h中的-crol-和-cror-的使用" class="headerlink" title="intrins.h中的_crol_和_cror_的使用"></a>intrins.h中的_crol_和_cror_的使用</h1><p>之前做单片机控制LED实现流水闪烁实验时，接触到内部函数intrins.h的使用。今天做一下记录</p>
 <h1 id="函数crol"><a href="#函数crol" class="headerlink" title="函数crol"></a>函数<em>crol</em></h1><p><code>_crol_</code>在intrins.h的声明是这样的</p>
-<pre><code>`unsigned char _crol_(unsigned char val, unsigned n); // 其功能是使val的二进制形式循环左移n位`</code></pre><p>例如：语句<code>_crol_(8,1)</code>,8的二进制是00001000B，将其循环左移1位返回值是00010000B。</p>
-<h1 id="函数cror"><a href="#函数cror" class="headerlink" title="函数cror"></a>函数<em>cror</em></h1><p>相似的<code>_cror_</code>在intrins.h的声明</p>
-<pre><code>`unsigned char _cror_(unsigned char val, unsigned n); // 其功能是使val的二进制形式循环右移n位`</code></pre><p>同样的，语句<code>_cror_(8,1)</code>,返回值是00000100B</p>
+<p><code>unsigned char _crol_(unsigned char val, unsigned n); // 其功能是使val的二进制形式循环左移n位</code></p>
+<p>例如：语句<code>_crol_(8,1)</code>,8的二进制是00001000B，将其循环左移1位返回值是00010000B。</p>
+<h1 id="函数cror"><a href="#函数cror" class="headerlink" title="函数cror"></a>函数<em>cror</em></h1><p>相似的，<code>_cror_</code>在intrins.h的声明</p>
+<p><code>unsigned char _cror_(unsigned char val, unsigned n); // 其功能是使val的二进制形式循环右移n位</code></p>
+<p>同样的，语句<code>_cror_(8,1)</code>,返回值是00000100B</p>
 <h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p><strong>要求：使用_crol_和_cror_函数通过单片机控制8个LED灯流水闪烁。</strong></p>
+<p><strong>Proteus仿真图</strong></p>
+<p>连线使用了标号连接</p>
+<p><img src="/posts/38755/0.png" alt></p>
+<p><strong>源代码</strong></p>
+<pre class="line-numbers language-C"><code class="language-C">#include<reg51.h>
+#include<intrins.h> 
+// 头部文件
+// #include<reg51.h>
+// #include<intrins.h>
+
+void delay100ms(void)   //误差 0us 用单片机小精灵生成的
+{
+    unsigned char a,b,c;
+    for(c=19;c>0;c--)
+        for(b=20;b>0;b--)
+            for(a=130;a>0;a--);
+}
+
+void main()
+{
+    unsigned char Data,i;
+    unsigned int Data1;
+    Data=0xfe;      // 二进制11111110B 
+    Data1=0x7f;      // 二进制01111111B
+     while(1)
+    {
+
+        for(i=0;i<8;i++)              // 循环8次，可执行_crol_函数8次，将Data各位循环左移8次，即8个LED逐个点亮。
+        {
+            P2=Data;                // 将Data传递给P2口
+            Data=_crol_(Data,1);    // 11111110B各位左移1位
+            delay100ms();
+        }
+        for(i=0;i<8;i++)            // 与上面道理相似，这是控制Data1各位右移
+        {
+            P2=Data1;
+            Data1=_cror_(Data1,1);
+            delay100ms();
+            P0=Data;
+        }
+    }
+} 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>效果可使用Proteus和Keil进行仿真。</p>
 
             </div>
             <hr/>
