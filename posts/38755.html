@@ -473,7 +473,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    180
                 </div>
                 
 
@@ -495,7 +495,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="intrins-h中的-crol-和-cror-的使用"><a href="#intrins-h中的-crol-和-cror-的使用" class="headerlink" title="intrins.h中的_crol_和_cror_的使用"></a>intrins.h中的_crol_和_cror_的使用</h1><p>之前做单片机控制LED实现流水闪烁实验时，接触到内部函数intrins.h的使用。今天做一下记录</p>
+<h1 id="函数crol"><a href="#函数crol" class="headerlink" title="函数crol"></a>函数<em>crol</em></h1><p><code>_crol_</code>在intrins.h的声明是这样的</p>
+<pre><code>`unsigned char _crol_(unsigned char val, unsigned n); // 其功能是使val的二进制形式循环左移n位`</code></pre><p>例如：语句<code>_crol_(8,1)</code>,8的二进制是00001000B，将其循环左移1位返回值是00010000B。</p>
+<h1 id="函数cror"><a href="#函数cror" class="headerlink" title="函数cror"></a>函数<em>cror</em></h1><p>相似的<code>_cror_</code>在intrins.h的声明</p>
+<pre><code>`unsigned char _cror_(unsigned char val, unsigned n); // 其功能是使val的二进制形式循环右移n位`</code></pre><p>同样的，语句<code>_cror_(8,1)</code>,返回值是00000100B</p>
+<h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p><strong>要求：使用_crol_和_cror_函数通过单片机控制8个LED灯流水闪烁。</strong></p>
+
             </div>
             <hr/>
 
@@ -1216,7 +1222,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">8.3k</span>&nbsp;字
+                class="white-color">8.5k</span>&nbsp;字
             
             
             
