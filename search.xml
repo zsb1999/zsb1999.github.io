@@ -8,9 +8,23 @@
       <link href="/posts/63918.html"/>
       <url>/posts/63918.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="串行通信接口"><a href="#串行通信接口" class="headerlink" title="串行通信接口"></a>串行通信接口</h1><p>与串行通信有关的几个寄存器，接受/发送缓冲器<code>SBUF</code>、串行口控制寄存器<code>SCON</code>、电源控制寄存器<code>PCON</code>、中断允许控制寄存器<code>IE</code>、中断优先级控制寄存器<code>IP</code>。</p><h1 id="串行通信接口的结构"><a href="#串行通信接口的结构" class="headerlink" title="串行通信接口的结构"></a>串行通信接口的结构</h1><h1 id="SCON串行口控制寄存器"><a href="#SCON串行口控制寄存器" class="headerlink" title="SCON串行口控制寄存器"></a><code>SCON</code>串行口控制寄存器</h1><h2 id="SCON各位定义"><a href="#SCON各位定义" class="headerlink" title="SCON各位定义"></a><code>SCON</code>各位定义</h2><h1 id="串行通信的4种工作方式"><a href="#串行通信的4种工作方式" class="headerlink" title="串行通信的4种工作方式"></a>串行通信的4种工作方式</h1><h2 id="串行工作方式0"><a href="#串行工作方式0" class="headerlink" title="串行工作方式0"></a>串行工作方式0</h2><h2 id="串行工作方式1"><a href="#串行工作方式1" class="headerlink" title="串行工作方式1"></a>串行工作方式1</h2><h2 id="串行工作方式2和3"><a href="#串行工作方式2和3" class="headerlink" title="串行工作方式2和3"></a>串行工作方式2和3</h2><h1 id="串行通信接口应用实例"><a href="#串行通信接口应用实例" class="headerlink" title="串行通信接口应用实例"></a>串行通信接口应用实例</h1><h2 id><a href="#" class="headerlink" title></a></h2>]]></content>
       
       
+      <categories>
+          
+          <category> 单片机 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 单片机 </tag>
+            
+            <tag> 学习笔记 </tag>
+            
+        </tags>
       
     </entry>
     
