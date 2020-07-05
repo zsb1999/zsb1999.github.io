@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="单片机实验:LCD1602的显示, ZHAO&#39;s Blog">
+    <meta name="keywords" content="继承, ZHAO&#39;s Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>单片机实验:LCD1602的显示 | ZHAO&#39;s Blog</title>
+    <title>继承 | ZHAO&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">单片机实验:LCD1602的显示</h1>
+                    <h1 class="description center-align post-title">继承</h1>
                 </div>
             </div>
         </div>
@@ -439,12 +439,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                <span class="chip bg-color">单片机</span>
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
                             </a>
                         
-                            <a href="/tags/LCD%E6%B6%B2%E6%99%B6%E6%98%BE%E7%A4%BA/">
-                                <span class="chip bg-color">LCD液晶显示</span>
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
                             </a>
                         
                     </div>
@@ -455,8 +455,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/" class="post-category">
-                                单片机
+                            <a href="/categories/Python/" class="post-category">
+                                Python
                             </a>
                         
                     </div>
@@ -468,28 +468,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-09
+                    2020-07-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-09
+                    2020-07-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    1 分
                 </div>
                 
 
@@ -504,258 +504,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="LCD液晶显示-以LCD1602为例"><a href="#LCD液晶显示-以LCD1602为例" class="headerlink" title="LCD液晶显示-以LCD1602为例"></a>LCD液晶显示-以<code>LCD1602</code>为例</h1><blockquote>
-<ul>
-<li>LCD1602中的16表示每行显示16个字符，02表示可以显示两行</li>
-</ul>
-</blockquote>
-<h2 id="一、LCD1602实物图"><a href="#一、LCD1602实物图" class="headerlink" title="一、LCD1602实物图"></a>一、LCD1602实物图</h2><p><img src="/posts/59324/LCD1602-1.jpg" alt></p>
-<h2 id="二、LCD1602引脚图"><a href="#二、LCD1602引脚图" class="headerlink" title="二、LCD1602引脚图"></a>二、LCD1602引脚图</h2><p><img src="/posts/59324/LCD1602-2.jpg" alt></p>
-<h3 id="1-引脚功能"><a href="#1-引脚功能" class="headerlink" title="1.引脚功能"></a>1.引脚功能</h3><ul>
-<li>1脚：Vss电源接地</li>
-<li>2脚：VDD电源正(+5V)</li>
-<li>3脚：VL对比度调整 电压越低对比度越高</li>
-<li>4脚：RS寄存器选择 高电平为数据寄存器 低电平为指令寄存器</li>
-<li>5脚：R/W读写信号线即Read/Write，高电平Read低电平Write</li>
-<li>6脚：E势能端，1 -&gt; 0时写操作，1时读操作</li>
-<li>7~14：DB0-DB7是8位双向数据线</li>
-<li>15脚：背光电源+极</li>
-<li>16脚：背光电源-极</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>引脚号</th>
-<th>符号</th>
-<th>功能</th>
-<th>引脚号</th>
-<th>符号</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>VSS</td>
-<td>电源接地</td>
-<td>9</td>
-<td>DB2</td>
-<td>数据总线</td>
-</tr>
-<tr>
-<td>2</td>
-<td>VDD</td>
-<td>电源正(+5V)</td>
-<td>10</td>
-<td>DB3</td>
-<td>数据总线</td>
-</tr>
-<tr>
-<td>3</td>
-<td>VL</td>
-<td>对比度调整。电压越低对比度越高</td>
-<td>11</td>
-<td>DB4</td>
-<td>数据总线</td>
-</tr>
-<tr>
-<td>4</td>
-<td>RS</td>
-<td>寄存器选择1为数据寄存器0为指令寄存器</td>
-<td>12</td>
-<td>DB5</td>
-<td>数据总线</td>
-</tr>
-<tr>
-<td>5</td>
-<td>R/W</td>
-<td>读写信号线即Read/Write，1为</td>
-<td>13</td>
-<td>DB6</td>
-<td>数据总线</td>
-</tr>
-<tr>
-<td>6</td>
-<td>E</td>
-<td>使能端。1-&gt;0下降沿有效执行写操作,1读操作</td>
-<td>14</td>
-<td>DB7</td>
-<td>数据总线</td>
-</tr>
-<tr>
-<td>7</td>
-<td>DB0</td>
-<td>数据总线</td>
-<td>15</td>
-<td>E1</td>
-<td>背光电源+</td>
-</tr>
-<tr>
-<td>8</td>
-<td>DB1</td>
-<td>数据总线</td>
-<td>16</td>
-<td>E2</td>
-<td>背光电源-</td>
-</tr>
-</tbody></table>
-<h3 id="2-LCD显示RAM地址"><a href="#2-LCD显示RAM地址" class="headerlink" title="2.LCD显示RAM地址"></a>2.LCD显示RAM地址</h3><p><img src="/posts/59324/LCD1602-3.jpg" alt></p>
-<h3 id="3-指令集"><a href="#3-指令集" class="headerlink" title="3.指令集"></a>3.指令集</h3><p><img src="/posts/59324/LCD1602-4.jpg" alt></p>
-<p> <strong>接下来在具体实验中详细解释</strong></p>
-<h2 id="三、RS与R-W的的作用"><a href="#三、RS与R-W的的作用" class="headerlink" title="三、RS与R/W的的作用"></a>三、RS与R/W的的作用</h2><blockquote>
-<ul>
-<li>当RS=0，R/W=0时。RS选择指令寄存器，R/W写操作，即为写指令。</li>
-<li>当RS=0，R/W=1时。RS选择指令寄存器，R/W读操作，即为读指令。</li>
-<li>当RS=1，R/W=0时。RS选择数据寄存器，R/W写操作，即为写数据。</li>
-<li>当RS=1，R/W=1时。RS选择数据寄存器，R/W读操作，即为读数据。</li>
-</ul>
-</blockquote>
-<h2 id="四、判”忙”函数的使用"><a href="#四、判”忙”函数的使用" class="headerlink" title="四、判”忙”函数的使用"></a>四、判”忙”函数的使用</h2><h2 id="五、LCD1602显示”Hello-World”字符串"><a href="#五、LCD1602显示”Hello-World”字符串" class="headerlink" title="五、LCD1602显示”Hello World”字符串"></a>五、LCD1602显示”Hello World”字符串</h2><p><strong>LCD1602的显示一共分为一下几个步骤</strong></p>
-<ul>
-<li>1.写指令</li>
-<li>2.写数据</li>
-<li>3.初始化</li>
-<li>4.判忙</li>
-</ul>
-<p>我们使用<strong><em>Protues</em></strong>软件做仿真实验</p>
-<p><strong>元器件</strong>：</p>
-<ul>
-<li>80C51单片机</li>
-<li>LCD：LM016L</li>
-<li>8排的组装电阻 RESPACK-8 </li>
-</ul>
-<p><strong>提示</strong>：<em>因为我用P0口做数据总线，P0口没有上拉电阻无法提供高电平，所以要加一个电阻包</em></p>
-<p><strong>Protues仿真图</strong></p>
-<p><img src="/posts/59324/LCD1602-5.png" alt></p>
-<h3 id="1-写指令"><a href="#1-写指令" class="headerlink" title="1.写指令"></a>1.写指令</h3><pre class="line-numbers language-C"><code class="language-C">
-void write_command(uchar cmd) // 写指令  其中cmd为指令内容
-{
-    RS = 0; // 低电平选择指令寄存器
-    RW = 0; // 低电平为写操作
-    P3 = cmd; // 将指令的二进制形式传递给P3口
-    delay(5);
-    E = 1;  // 将使能端拉高
-    delay(5);
-    E = 0;     // 从高到低 下降沿 写操作
-
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="2-写数据"><a href="#2-写数据" class="headerlink" title="2.写数据"></a>2.写数据</h3><pre class="line-numbers language-C"><code class="language-C">void write_data(uchar date)  // 写数据
-{
-    RS = 1; // 高电平选择数据寄存器
-    RW = 0; // 低电平为写操作
-    P3 = date; // 将数据的二进制形式传递给P3口
-    delay(5);
-    E = 1;  // 将使能端拉高
-    delay(5);
-    E = 0;     // 从高到低 下降沿 写操作
-
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3.初始化"></a>3.初始化</h3><pre class="line-numbers language-C"><code class="language-C">void init()    // LCD初始化
-{
-    RW = 0; // 写操作
-    E = 0; //
-    write_command(0x38); // 16*2显示 5*7点阵 8位数据接口
-    write_command(0x0e); // 只显示字符不显示光标
-    write_command(0x06); // 每写完一个字符，地址+1
-    write_command(0x01); // 清屏 数据指针清0
-
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="4-主函数"><a href="#4-主函数" class="headerlink" title="4.主函数"></a>4.主函数</h3><pre class="line-numbers language-C"><code class="language-C">void main() 
-{
-    init();
-    write_command(0x80); //从第一行第一列开始
-    for(num = 0;num < 7; num++)
-    {
-        write_data(table1[num]);
-        delay(5);
-    }
-    write_command(0x80 + 0x40);//从第二行第一列开始
-    for(num = 0;num < 11; num++)
-    {
-        write_data(table2[num]);
-        delay(5);
-    }
-    while(1);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="5-效果图"><a href="#5-效果图" class="headerlink" title="5.效果图"></a>5.效果图</h3><p><img src="/posts/59324/LCD1602-6.png" alt></p>
-<h3 id="6-完整程序"><a href="#6-完整程序" class="headerlink" title="6.完整程序"></a>6.完整程序</h3><pre class="line-numbers language-C"><code class="language-C">#include<reg52.h>
-
-#define uchar unsigned char
-#define uint unsigned int
-sbit RS = P2^1; // 寄存器选择 1为数据寄存器 0为指令寄存器
-sbit RW = P2^2; // 1为读操作 0为写操作
-sbit E = P2^3; // 使能端
-uchar num;
-uchar code table1[] = "Hello World";
-uchar code table2[] = "Hello World";
-void delay(uint time)       // 延时函数
-{
-    uint x,y;
-    for( x = time; x > 0; x--)
-        for( y = 110; y > 0; y--);
-}
-
-void write_command(uchar cmd) // 写指令  其中cmd为指令内容
-{
-    RS = 0; // 低电平选择指令寄存器
-    RW = 0; // 低电平为写操作
-    P3 = cmd; // 将指令的二进制形式传递给P3口
-    delay(5);
-    E = 1;  // 将使能端拉高
-    delay(5);
-    E = 0;     // 从高到低 下降沿 写操作
-
-}
-
-
-
-void write_data(uchar date)  // 写数据
-{
-    RS = 1; // 高电平选择数据寄存器
-    RW = 0; // 低电平为写操作
-    P3 = date; // 将数据的二进制形式传递给P3口
-    delay(5);
-    E = 1;  // 将使能端拉高
-    delay(5);
-    E = 0;     // 从高到低 下降沿 写操作
-
-}
-
-
-
-
-void init()    // LCD初始化
-{
-    RW = 0; // 写操作
-    E = 0; //
-    write_command(0x38); // 16*2显示 5*7点阵 8位数据接口
-    write_command(0x0e); // 只显示字符不显示光标
-    write_command(0x06); // 每写完一个字符，地址+1
-    write_command(0x01); // 清屏 数据指针清0
-
-}
-
-void main() 
-{
-    init();
-    write_command(0x80);
-    for(num = 0;num < 11; num++)
-    {
-        write_data(table1[num]);
-        delay(5);
-    }
-    write_command(0x80 + 0x40);
-    for(num = 0;num < 11; num++)
-    {
-        write_data(table2[num]);
-        delay(5);
-    }
-    while(1);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>未完待续…</strong></p>
-
+                
             </div>
             <hr/>
 
@@ -768,12 +517,12 @@ void main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                    <span class="chip bg-color">单片机</span>
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
                                 </a>
                             
-                                <a href="/tags/LCD%E6%B6%B2%E6%99%B6%E6%98%BE%E7%A4%BA/">
-                                    <span class="chip bg-color">LCD液晶显示</span>
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
                         </div>
@@ -944,7 +693,7 @@ void main()
         repo: 'z1999.github.io',
         owner: 'zsb1999',
         admin: ["小鼠标"],
-        id: '2020-06-09T11-17-21',
+        id: '2020-07-05T18-26-47',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1231,77 +980,29 @@ void main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/2636.html">
+                <a href="/posts/28439.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="单片机实验:LED点阵的显示">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="继承">
                         
-                        <span class="card-title">单片机实验:LED点阵的显示</span>
+                        <span class="card-title">继承</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Protues+Keil仿真实验
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-09
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA/" class="post-category">
-                                    单片机
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                        <span class="chip bg-color">单片机</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/64290.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Python实现图片转化为base64编码格式">
-                        
-                        <span class="card-title">Python实现图片转化为base64编码格式</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            图片->编码只需一步
+                            对类的继承理解
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-05
                             </span>
                         <span class="publish-author">
                             
@@ -1315,11 +1016,69 @@ void main()
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Pyhton/">
-                        <span class="chip bg-color">Pyhton</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/826.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="Python中的类">
+                        
+                        <span class="card-title">Python中的类</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            如何使用类
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Pyhton/" class="post-category">
+                                    Pyhton
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
                     </a>
                     
                 </div>

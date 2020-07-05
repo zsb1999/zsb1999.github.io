@@ -4,13 +4,54 @@
   
     
     <entry>
-      <title>Python中的类</title>
-      <link href="/posts/826.html"/>
-      <url>/posts/826.html</url>
+      <title>继承</title>
+      <link href="/posts/28439.html"/>
+      <url>/posts/28439.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
       
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> 学习笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python中的类</title>
+      <link href="/posts/826.html"/>
+      <url>/posts/826.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>众所周知，Python是一门面向对象的编程语言，在所有面向对象的编程语言中，类起着重要的作用，今天二刷完了Python基础，总结一下<strong>类</strong>的相关知识。</p><h3 id="什么是类"><a href="#什么是类" class="headerlink" title="什么是类"></a>什么是类</h3><h3 id="如何创建一个类"><a href="#如何创建一个类" class="headerlink" title="如何创建一个类"></a>如何创建一个类</h3><h3 id="如何理解类的实例化"><a href="#如何理解类的实例化" class="headerlink" title="如何理解类的实例化"></a>如何理解类的实例化</h3><h3 id="如何理解类的属性"><a href="#如何理解类的属性" class="headerlink" title="如何理解类的属性"></a>如何理解类的属性</h3><h3 id><a href="#" class="headerlink" title></a></h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> Pyhton </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> 学习笔记 </tag>
+            
+        </tags>
       
     </entry>
     
