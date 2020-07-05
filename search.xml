@@ -35,7 +35,7 @@
       <link href="/posts/826.html"/>
       <url>/posts/826.html</url>
       
-        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>众所周知，Python是一门面向对象的编程语言，在所有面向对象的编程语言中，类起着重要的作用，今天二刷完了Python基础，总结一下<strong>类</strong>的相关知识。</p><h3 id="什么是类"><a href="#什么是类" class="headerlink" title="什么是类"></a>什么是类</h3><h3 id="如何创建一个类"><a href="#如何创建一个类" class="headerlink" title="如何创建一个类"></a>如何创建一个类</h3><h3 id="如何理解类的实例化"><a href="#如何理解类的实例化" class="headerlink" title="如何理解类的实例化"></a>如何理解类的实例化</h3><h3 id="如何理解类的属性"><a href="#如何理解类的属性" class="headerlink" title="如何理解类的属性"></a>如何理解类的属性</h3><h3 id><a href="#" class="headerlink" title></a></h3>]]></content>
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>众所周知，Python是一门面向对象的编程语言，在所有面向对象的编程语言中，类起着重要的作用，今天二刷完了Python基础，总结一下<strong>类</strong>的相关知识。</p><h3 id="什么是类"><a href="#什么是类" class="headerlink" title="什么是类"></a>什么是类</h3><p><strong>类</strong> 面向对象编程语言最突出的特点，类的使用提升了代码的复用性，大大的提高了编程的效率。<br>你可以通过<strong>类</strong>模拟现实中的事物和情景，其中的每一个<strong>对象</strong>都具有通用的行为(<strong>类的方法</strong>)或者属性(<strong>类的属性</strong>)。比如，人有吃饭、睡觉、跑步等一些行为；同时拥有姓名、身高、体重等属性。</p><h3 id="如何创建一个类"><a href="#如何创建一个类" class="headerlink" title="如何创建一个类"></a>如何创建一个类</h3><p>一个最简单的类包括self参数、属性、方法。</p><p><strong>创建一个Person类</strong>：  </p><hr><p><img src="/posts/826/0.png" alt></p><pre class="line-numbers language-Python"><code class="language-Python">class Person():    '''模拟人的类'''    def __init__(self, name, age):        self.name = name        self.age = age    def self_introduction(self):        '''自我介绍的方法'''        print('My name is '+ self.name.title() + " and I'm " + self.age + ' years old.')person = Person('zhaoshuaibo','21')person.self_introduction()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><ol><li><strong>self参数</strong></li></ol><p>在Python中self参数只存在于类的属性和方法中，它只代表对象本身，作用是在类的外部通过对象调用某个方法时，不需要再给被调用的方法传递参数。例如上面程序中<code>person</code>就是<code>Person</code>类的一个实例化对象。<br>当我们在类的外部通过代码<br><code>person.self_introduction()</code><br>调用自我介绍的方法时，我们不需要再传递它所需要的<code>name</code>和<code>age</code>两个参数。</p><ol start="2"><li><strong>属性</strong></li></ol><p>属性就是类对象的属性，存储某个值。一个类可能有很多属性，可以任意绑定。</p><ol start="2"><li><strong>方法</strong></li></ol><p>类中的方法其实就是函数，函数构造的所有方法在这里都适用。类可以理解为把函数封装起来。类的方法中都必须有一个作为第一形参的self参数，不过这个self并不是一个关键字，可以自行拟定。</p>]]></content>
       
       
       <categories>
@@ -182,7 +182,7 @@
       
         <tags>
             
-            <tag> 浅谈个人博客 </tag>
+            <tag> hexo博客 </tag>
             
         </tags>
       
@@ -384,7 +384,7 @@
       
         <tags>
             
-            <tag> 浅谈个人博客 </tag>
+            <tag> hexo博客 </tag>
             
         </tags>
       
