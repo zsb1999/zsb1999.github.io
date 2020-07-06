@@ -439,12 +439,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
-                            </a>
-                        
                             <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                 <span class="chip bg-color">学习笔记</span>
+                            </a>
+                        
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
                             </a>
                         
                     </div>
@@ -475,21 +475,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-05
+                    2020-07-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    670
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -504,7 +504,103 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>继承也是面向对象编程的重要特性之一，在你想创建新类时，如果已经有一个类包含这个类部分属性或方法，那么就可以继承这个类。  </p>
+<p>原有的类叫做<strong>父类</strong>或<strong>基类</strong>，新建的类叫<strong>子类</strong>或<strong>派生类</strong>  </p>
+<ol>
+<li><strong>创建一个Car类</strong></li>
+</ol>
+<p>假如现在有一个Car类</p>
+<pre class="line-numbers language-Python"><code class="language-Python">
+class Car():
+    '''模拟汽车的类'''
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer = 0
+
+    def describe_car(self):
+        '''描述汽车信息的方法'''
+        print(self.make.title() +' '+ self.model.title() +' '+ self.year.title())
+
+    def read_odometer(self):
+        '''读出汽车行驶里程的方法'''
+        print('This car has ' + str(self.odometer) + ' miles on it')
+
+    def updata_odometer(self, data):
+        '''更新里程的方法'''
+        if data >= self.odometer:
+            self.odometer = data
+        else:
+            print("You can't roll back an odometer !")
+
+    def increment_odometer(self, miles):
+        '''增加里程的方法'''
+        self.odometer += miles<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li><strong>继承Car类</strong></li>
+</ol>
+<p>现在我想创建一个Electric_Car的类，电动汽车包含汽车的属性和方法。利用继承的方法创建Electric_Car类</p>
+<pre class="line-numbers language-Python"><code class="language-Python">
+class Electric_Car(Car):
+    '''模拟电动汽车'''
+    '''继承类Car'''
+    def __init__(self, make, model, year):
+        '''初始化父类的属性'''
+        super().__init__(make, model, year)
+        self.battery_size = 70
+
+    def describe_battery(self):
+        '''输出电瓶容量'''
+        print("This car has a " + str(self.battery_size) + '-kWh battery.')
+
+my_car= Electric_Car('SANGTANA', '2000', '2020')
+my_car.describe_car()
+my_car.describe_battery()
+
+
+Sangtana 2000 2020
+This car has a 70-kWh battery.
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>super()函数的作用是子类继承父类所有属性和方法的同时，也可以添加自己特有的属性或方法，还可以重写父类的属性或方法。</p>
+<p>在Electic_Car类中，不仅继承了父类的所有属性和方法还，添加了一个特有属性battery_size。</p>
+<ol start="3">
+<li><strong>重写父类的方法或属性</strong></li>
+</ol>
+<p>有了super()函数，只要父类中有不符合子类的方法或者属性，都可以对父类进行重写。</p>
+<ol start="4">
+<li><strong>什么是重写</strong></li>
+</ol>
+<p>重写就是在子类中添加一个与父类中同名的方法或属性。这样Python不会考虑这个父类的方法或属性，只关注子类中定义同名的方法或属性。</p>
+<ol start="5">
+<li><strong>重写属性</strong></li>
+</ol>
+<p>试着重写父类Car中的odometer属性。</p>
+<pre class="line-numbers language-Python"><code class="language-Python">
+class Electric_Car(Car):
+    '''模拟电动汽车'''
+    '''继承类Car'''
+    def __init__(self, make, model, year):
+        '''初始化父类的属性'''
+        super().__init__(make, model, year)
+        self.battery_size = 70
+        self.odometer = 1000  # 重写父类中的odometer属性
+
+    def describe_battery(self):
+        '''输出电瓶容量'''
+        print("This car has a " + str(self.battery_size) + '-kWh battery.')
+
+my_car.read_odometer() # 调用父类的方法
+
+This car has 0 miles on it # 重写odometer前的输出结果
+
+This car has 1000 miles on it # 重写odometer后的输出结果
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="6">
+<li><strong>重写方法</strong></li>
+</ol>
+<p>重写方法与属性相似，直接在子类中创建一个同名的方法，这样Python就不会考虑父类中相应的方法。 </p>
+
             </div>
             <hr/>
 
@@ -517,12 +613,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                     <span class="chip bg-color">学习笔记</span>
+                                </a>
+                            
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
                                 </a>
                             
                         </div>
@@ -1020,12 +1116,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
                 </div>
@@ -1073,12 +1169,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
                 </div>
@@ -1216,6 +1312,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
     <footer class="page-footer bg-color">
     
@@ -1229,7 +1326,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.2k</span>&nbsp;字
+                class="white-color">10k</span>&nbsp;字
             
             
             

@@ -439,12 +439,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
-                            </a>
-                        
                             <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                 <span class="chip bg-color">学习笔记</span>
+                            </a>
+                        
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
                             </a>
                         
                     </div>
@@ -475,21 +475,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-05
+                    2020-07-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    490
+                    636
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -529,13 +529,34 @@ person.self_introduction()
 </ol>
 <p>在Python中self参数只存在于类的属性和方法中，它只代表对象本身，作用是在类的外部通过对象调用某个方法时，不需要再给被调用的方法传递参数。例如上面程序中<code>person</code>就是<code>Person</code>类的一个实例化对象。<br>当我们在类的外部通过代码<br><code>person.self_introduction()</code><br>调用自我介绍的方法时，我们不需要再传递它所需要的<code>name</code>和<code>age</code>两个参数。</p>
 <ol start="2">
-<li><strong>属性</strong></li>
+<li><strong>如何调用类的属性</strong></li>
 </ol>
-<p>属性就是类对象的属性，存储某个值。一个类可能有很多属性，可以任意绑定。</p>
-<ol start="2">
-<li><strong>方法</strong></li>
+<p>属性就是类对象的属性，存储某个值。一个类可能有很多属性，可以任意绑定。<br>基于上面的Person类，调用Person类的属性</p>
+<pre><code>person = Person(&#39;zhaoshuaibo&#39;,&#39;21&#39;)
+print(person.name)</code></pre><p><strong>运行代码</strong></p>
+<hr>
+<pre><code>zhaoshuaibo</code></pre><hr>
+<ol start="3">
+<li><strong>如何调用类的方法</strong></li>
 </ol>
-<p>类中的方法其实就是函数，函数构造的所有方法在这里都适用。类可以理解为把函数封装起来。类的方法中都必须有一个作为第一形参的self参数，不过这个self并不是一个关键字，可以自行拟定。</p>
+<p>类中的方法其实就是函数，函数构造的所有方法在这里都适用。类可以理解为把函数封装起来。类的方法中都必须有一个作为第一形参的self参数，不过这个self并不是一个关键字，可以自行拟定。<br>代码格式：对象名.方法名()<br>例如:  </p>
+<pre><code>person.self_introduction()</code></pre><p><strong>运行代码</strong></p>
+<hr>
+<pre><code>My name is Zhaoshuaibo and I&#39;m 21 years old.</code></pre><hr>
+<ol start="4">
+<li><strong>对象</strong></li>
+</ol>
+<p>Python中的对象就是类实例化的结果</p>
+<p>在实例化几个对象XiaoMing、XiaoHua、Lilei，<br><img src="/posts/826/1.png" alt></p>
+<p>运行代码：</p>
+<hr>
+<pre><code>My name is Zhaoshuaibo and I&#39;m 21 years old.
+
+My name is Xiaoming and I&#39;m 18 years old.
+
+My name is Xiaoua and I&#39;m 21 years old.
+
+My name is Lilei and I&#39;m 16 years old.</code></pre><hr>
 
             </div>
             <hr/>
@@ -549,12 +570,12 @@ person.self_introduction()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                     <span class="chip bg-color">学习笔记</span>
+                                </a>
+                            
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
                                 </a>
                             
                         </div>
@@ -1050,12 +1071,12 @@ person.self_introduction()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
                 </div>
@@ -1246,6 +1267,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
     <footer class="page-footer bg-color">
     
@@ -1259,7 +1281,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.2k</span>&nbsp;字
+                class="white-color">10k</span>&nbsp;字
             
             
             
